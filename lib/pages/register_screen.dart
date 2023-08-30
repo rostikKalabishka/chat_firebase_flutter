@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_chat/services/auth/auth_service.dart';
+import 'package:provider/provider.dart';
 
 import '../components/custom_button.dart';
 import '../components/text_field.dart';
@@ -16,7 +18,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final passwordTextController = TextEditingController();
   final confirmPasswordTextController = TextEditingController();
 
-  void singUp() {}
+  void singUp() async {
+    if (passwordTextController.text != confirmPasswordTextController.text) {
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Password do not match!')));
+      return;
+    }
+
+    final authService = Provider.of<AuthService>(context, listen: false);
+    try {
+      await authService.singUpWithEmailAndPassword(
+          emailTextController.text, passwordTextController.text);
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(e.toString()),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +47,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(height: 50),
               Icon(
                 Icons.message,
                 size: 100,
                 color: Colors.grey[800],
               ),
-              const SizedBox(height: 50),
+              const SizedBox(height: 40),
               const Text(
                 'Let`s create an account for you!',
                 style: TextStyle(fontSize: 16),
@@ -67,11 +86,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               const SizedBox(height: 20),
               CustomButton(
-                onTap: () {},
+                onTap: singUp,
                 text: 'Sing up',
               ),
               const SizedBox(
-                height: 50,
+                height: 20,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

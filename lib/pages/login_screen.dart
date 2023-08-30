@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_chat/services/auth/auth_service.dart';
 
 import '../components/custom_button.dart';
 import '../components/text_field.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   final void Function()? onTap;
@@ -15,7 +17,17 @@ class _LoginScreenState extends State<LoginScreen> {
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
 
-  void singIp() {}
+  void singIn() async {
+    final authService = Provider.of<AuthService>(context, listen: false);
+    try {
+      await authService.singInWithEmailAndPassword(
+          emailTextController.text, passwordTextController.text);
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(e.toString()),
+      ));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(height: 50),
+              const SizedBox(height: 40),
               Icon(
                 Icons.message,
                 size: 100,
@@ -57,7 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               const SizedBox(height: 20),
               CustomButton(
-                onTap: () {},
+                onTap: singIn,
                 text: 'Sing in',
               ),
               const SizedBox(

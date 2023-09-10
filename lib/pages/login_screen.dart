@@ -73,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 text: 'Sing in',
               ),
               const SizedBox(
-                height: 50,
+                height: 20,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

@@ -49,7 +49,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             children: [
               Icon(
                 Icons.message,
-                size: 100,
+                size: 70,
                 color: Colors.grey[800],
               ),
               const SizedBox(height: 40),

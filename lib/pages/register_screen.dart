@@ -43,73 +43,77 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Scaffold(
       backgroundColor: Colors.grey[300],
       body: SafeArea(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.message,
-                size: 70,
-                color: Colors.grey[800],
-              ),
-              const SizedBox(height: 40),
-              const Text(
-                'Let`s create an account for you!',
-                style: TextStyle(fontSize: 16),
-              ),
-              const SizedBox(height: 30),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: CustomTextField(
-                  hintText: 'Email',
-                  obscureText: false,
-                  textFieldController: emailTextController,
+          child: ListView(
+        children: [
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(height: 40),
+                Icon(
+                  Icons.message,
+                  size: 200,
+                  color: Colors.grey[800],
                 ),
-              ),
-              const SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: CustomTextField(
-                  hintText: 'Password',
-                  obscureText: true,
-                  textFieldController: passwordTextController,
+                const SizedBox(height: 40),
+                const Text(
+                  'Let`s create an account for you!',
+                  style: TextStyle(fontSize: 16),
                 ),
-              ),
-              const SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: CustomTextField(
-                  hintText: 'Confirm password',
-                  obscureText: true,
-                  textFieldController: confirmPasswordTextController,
+                const SizedBox(height: 30),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: CustomTextField(
+                    hintText: 'Email',
+                    obscureText: false,
+                    textFieldController: emailTextController,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 20),
-              CustomButton(
-                onTap: singUp,
-                text: 'Sing up',
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text('Already a member?'),
-                  const SizedBox(width: 5),
-                  GestureDetector(
-                    onTap: widget.onTap,
-                    child: const Text(
-                      'Login now',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  )
-                ],
-              )
-            ],
+                const SizedBox(height: 20),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: CustomTextField(
+                    hintText: 'Password',
+                    obscureText: true,
+                    textFieldController: passwordTextController,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: CustomTextField(
+                    hintText: 'Confirm password',
+                    obscureText: true,
+                    textFieldController: confirmPasswordTextController,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                CustomButton(
+                  onTap: singUp,
+                  text: 'Sing up',
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text('Already a member?'),
+                    const SizedBox(width: 5),
+                    GestureDetector(
+                      onTap: widget.onTap,
+                      child: const Text(
+                        'Login now',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    )
+                  ],
+                )
+              ],
+            ),
           ),
-        ),
-      ),
+        ],
+      )),
     );
   }
 }
